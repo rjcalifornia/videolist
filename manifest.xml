@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
+	<name>Videolist for elgg</name>
+	<id>videolist</id>
+	<author>Core developers</author>
+	<version>1.9</version>
+	<category>bundled</category>
+	<category>content</category>
+	<category>widget</category>
+	<description>Integrated video gallery plugin. Enables users to share videos from Youtube and Vimeo. Video tagging and extension to groups included, video commenting feature added.</description>
+	<website>http://elgg.org/</website>
+	<copyright>See COPYRIGHT.txt</copyright>
+	<license>GNU General Public License version 2</license>
+	<requires>
+		<type>elgg_release</type>
+		<version>1.9</version>
+	</requires>
+         
+        
+	<activate_on_install>false</activate_on_install>
+</plugin_manifest>
