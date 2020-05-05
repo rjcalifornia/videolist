@@ -10,7 +10,7 @@ elgg_register_event_handler('init', 'system', 'videolist_init');
 
 function videolist_init() {
     // register the save action
-    elgg_register_action("videolist/save", __DIR__ . "/actions/videolist/save.php");
+    
     
     elgg_register_library('elgg:videolist', __DIR__ . '/lib/videolist.php');
 
@@ -19,6 +19,7 @@ function videolist_init() {
     
     elgg_register_entity_type('object', 'videolist');
     
+    
     // add a site navigation item
 	$item = new ElggMenuItem('videolist', elgg_echo('videolist:videos'), 'videolist/all');
 	elgg_register_menu_item('site', $item);
@@ -26,8 +27,10 @@ function videolist_init() {
 
     // register a hook handler to override urls
     elgg_register_plugin_hook_handler('entity:url', 'object', 'videolist_set_url');
-    
+    $action_path = __DIR__ . '/actions/videolist';
     elgg_register_plugin_hook_handler('entity:icon:url', 'object', 'videolist_set_icon_url');
+    elgg_register_action("videolist/save", __DIR__ . "/actions/videolist/save.php");
+    elgg_register_action("videolist/delete", __DIR__ . "/actions/videolist/delete.php");
 }
 
 

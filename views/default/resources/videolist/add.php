@@ -11,7 +11,7 @@ elgg_group_gatekeeper(true, $guid);
 $container = get_entity($guid);
 
 // Make sure user has permissions to add to container
-if (!$container->canWriteToContainer(0, 'object', 'posts')) {
+if (!$container->canWriteToContainer(0, 'object', 'videolist')) {
 	register_error(elgg_echo('actionunauthorized'));
 	forward(REFERER);
 }

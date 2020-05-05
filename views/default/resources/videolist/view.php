@@ -21,9 +21,9 @@ $container = $blog->getContainerEntity();
 $crumbs_title = $container->name;
 
 if (elgg_instanceof($container, 'group')) {
-	elgg_push_breadcrumb($crumbs_title, "blog/group/$container->guid/all");
+	elgg_push_breadcrumb($crumbs_title, "videolist/group/$container->guid/all");
 } else {
-	elgg_push_breadcrumb($crumbs_title, "blog/owner/$container->username");
+	elgg_push_breadcrumb($crumbs_title, "videolist/owner/$container->username");
 }
 
 elgg_push_breadcrumb($blog->title);
@@ -35,7 +35,7 @@ if ($blog->comments_on != 'Off' && $blog->status == 'published') {
 	$params['content'] .= elgg_view_comments($blog);
 }
 
-$params['sidebar'] = elgg_view('elggpress/sidebar', array('page' => $page_type));
+$params['sidebar'] = elgg_view('videolist/sidebar', array('page' => $page_type));
 
 $body = elgg_view_layout('content', $params);
 
