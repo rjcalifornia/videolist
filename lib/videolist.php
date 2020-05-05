@@ -32,7 +32,7 @@ function get_shared_videolist($container_guid = NULL) {
 		} else {
 			$options['owner_guid'] = $container_guid;
 		}
-		$return['title'] = elgg_echo('elggpress:title:user_blogs', array($container->name));
+		$return['title'] = elgg_echo('videolist:title:user_videos', array($container->name));
 
 		$crumbs_title = $container->name;
 		elgg_push_breadcrumb($crumbs_title);
@@ -89,7 +89,7 @@ function videolist_get_page_content_edit($page, $guid = 0, $revision = NULL) {
 		elgg_push_breadcrumb(elgg_echo('videolist:add'));
 		$body_vars = videolist_prepare_form_vars(null);
 
-		$title = elgg_echo('elggpress:add');
+		$title = elgg_echo('videolist:add');
 		$content = elgg_view_form('videolist/save', $vars, $body_vars);
 	
 
