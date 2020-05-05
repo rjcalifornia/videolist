@@ -24,19 +24,47 @@ if ($vars['guid']) {
 }
 
 
-$save_button = elgg_view('input/submit', array(
-	'value' => elgg_echo('save'),
-	'name' => 'save',
+
+
+
+
+if($vars['simple'] == 1)
+{
+    $video_label = elgg_echo('videolist:original:title');
+$video_input = elgg_view('input/text', array(
+	'name' => 'title',
+	'id' => 'videolist_title',
+	'value' => $vars['title']
 ));
 
-$action_buttons = $save_button . $delete_link;
-
+$save_button = elgg_view('input/submit', array(
+	'value' => elgg_echo('save'),
+       // 'id' => 'share',
+      //  'hidden' => 'true',
+	'name' => 'save',
+));
+}
+else
+{
 $video_label = elgg_echo('videolist:title');
 $video_input = elgg_view('input/text', array(
 	'name' => 'url',
 	'id' => 'videolist_url',
+        'onkeyup' => 'validateYouTubeUrl();',
 	'value' => $vars['url']
 ));
+
+$save_button = elgg_view('input/submit', array(
+	'value' => elgg_echo('save'),
+        'id' => 'share',
+        'hidden' => 'true',
+	'name' => 'save',
+));
+}
+
+$action_buttons = $save_button . $delete_link;
+
+//echo $vars['simple'];
 
 $comments_label = elgg_echo('comments');
 $comments_input = elgg_view('input/select', array(

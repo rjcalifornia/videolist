@@ -11,5 +11,7 @@ return array(
         'videolist:title:friends' => 'Videos shared by my friends',
         'videolist:none' => 'No videos',
         'videolist:title' => 'Enter a YouTube URL:',
+        'videolist:original:title' =>'Edit video title:',
+        'videolist:edit' => 'Edit video details'
 	
 );

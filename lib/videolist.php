@@ -71,7 +71,7 @@ function get_shared_videolist($container_guid = NULL) {
  * @param int     $revision Annotation id for revision to edit (optional)
  * @return array
  */
-function videolist_get_page_content_edit($page, $guid = 0, $revision = NULL) {
+function videolist_get_page_content_edit($page, $guid = 0, $revision = NULL, $simple) {
 //Set the form as multipart so elgg can handle the file
     //$form_vars = array('enctype' => 'multipart/form-data');
 	
@@ -85,13 +85,39 @@ function videolist_get_page_content_edit($page, $guid = 0, $revision = NULL) {
 	$vars['class'] = 'elgg-form-alt';
        // $vars['enctype'] = 'multipart/form-data';
 	$sidebar = '';
-	 
+	 if ($page == 'edit') {
+		$blog = get_entity((int)$guid);
+
+		$title = elgg_echo('videolist:edit');
+
+		if (elgg_instanceof($blog, 'object', 'videolist') && $blog->canEdit()) {
+			$vars['entity'] = $blog;
+
+			$title .= ": \"$blog->title\"";
+
+			
+
+			$body_vars = videolist_prepare_form_vars($blog, $revision, $simple);
+
+			elgg_push_breadcrumb($blog->title, $blog->getURL());
+			elgg_push_breadcrumb(elgg_echo('edit'));
+			
+			
+
+			$content = elgg_view_form('videolist/save',$vars, $body_vars);
+                        
+			
+                      //  echo print_r($vars);
+		} else {
+			$content = elgg_echo('videolist:error:cannot_edit_post');
+		}
+	} else {
 		elgg_push_breadcrumb(elgg_echo('videolist:add'));
-		$body_vars = videolist_prepare_form_vars(null);
+		$body_vars = videolist_prepare_form_vars(null, null, $simple);
 
 		$title = elgg_echo('videolist:add');
 		$content = elgg_view_form('videolist/save', $vars, $body_vars);
-	
+        }
 
 	$return['title'] = $title;
 	$return['content'] = $content;
@@ -106,7 +132,7 @@ function videolist_get_page_content_edit($page, $guid = 0, $revision = NULL) {
  * @param ElggAnnotation $revision
  * @return array
  */
-function videolist_prepare_form_vars($post = NULL, $revision = NULL) {
+function videolist_prepare_form_vars($post = NULL, $revision = NULL, $simple) {
     
     
 	// input names => defaults
@@ -117,6 +143,7 @@ function videolist_prepare_form_vars($post = NULL, $revision = NULL) {
 		'status' => 'published',
 		'access_id' => ACCESS_DEFAULT,
 		'comments_on' => 'On',
+                'simple' => $simple,
 		'excerpt' => NULL,
 		'tags' => NULL,
 		'container_guid' => NULL,

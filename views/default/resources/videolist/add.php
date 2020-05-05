@@ -15,8 +15,8 @@ if (!$container->canWriteToContainer(0, 'object', 'videolist')) {
 	register_error(elgg_echo('actionunauthorized'));
 	forward(REFERER);
 }
-
-$params = videolist_get_page_content_edit('add', $guid);
+elgg_extend_view('page/elements/head', 'extras/validation');
+$params = videolist_get_page_content_edit('add', $guid, null, 0);
 
 if (isset($params['sidebar'])) {
 	$params['sidebar'] .= elgg_view('videolist/sidebar', ['page' => $page_type]);
@@ -27,3 +27,4 @@ if (isset($params['sidebar'])) {
 $body = elgg_view_layout('content', $params);
 
 echo elgg_view_page($params['title'], $body);
+

@@ -87,6 +87,13 @@ function videolist_page_handler($page) {
 		case 'all':
 			echo elgg_view_resource('videolist/all', $resource_vars);
 			break;
+                    
+                case 'edit':
+			$resource_vars['guid'] = elgg_extract(1, $page);
+			$resource_vars['revision'] = elgg_extract(2, $page);
+			$resource_vars['simple'] = 1;
+			echo elgg_view_resource('videolist/edit', $resource_vars);
+			break;
 		default:
 			return false;
 	}
