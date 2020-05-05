@@ -13,7 +13,8 @@
     var url = $('#videolist_url').val();
         if (url != undefined || url != '') {
             var regExp = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-            if(url.match(regExp)){
+           // var regVimeo = /(http|https)?:\/\/(www\.|player\.)?vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|video\/|)(\d+)(?:|\/\?)/;
+            if(url.match(regExp) /*|| url.match(regVimeo)*/){
 //console.log('true');
 
 p.removeAttribute("hidden");

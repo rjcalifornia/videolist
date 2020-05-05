@@ -9,6 +9,7 @@ $access = get_input('access_id');
 $comments = get_input('comments_on');
 $guid = get_input('guid');
 $edited_title = get_input('title');
+$container = (int)get_input('container_guid');
 
 //$videoDetails = array();
 
@@ -44,6 +45,7 @@ $videolist->video_url = $url;
 $videolist->access_id = $access;
 $videolist->comments_on = $comments;
 $videolist->subtype = 'videolist';
+$videolist->container_guid = $container;
 $videolist->owner_guid = elgg_get_logged_in_user_guid();
 $videolist->status = 'published';
 

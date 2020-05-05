@@ -12,6 +12,8 @@ return array(
         'videolist:none' => 'No videos',
         'videolist:title' => 'Enter a YouTube URL:',
         'videolist:original:title' =>'Edit video title:',
-        'videolist:edit' => 'Edit video details'
+        'videolist:edit' => 'Edit video details',
+        'videolist:group' => 'Group videolist',
+        'videolist:enablegroup' => 'Enable group videolist'
 	
 );

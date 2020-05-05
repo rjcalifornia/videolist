@@ -27,10 +27,14 @@ function videolist_init() {
 
     // register a hook handler to override urls
     elgg_register_plugin_hook_handler('entity:url', 'object', 'videolist_set_url');
-    $action_path = __DIR__ . '/actions/videolist';
+    
     elgg_register_plugin_hook_handler('entity:icon:url', 'object', 'videolist_set_icon_url');
     elgg_register_action("videolist/save", __DIR__ . "/actions/videolist/save.php");
     elgg_register_action("videolist/delete", __DIR__ . "/actions/videolist/delete.php");
+    
+    // Add group option
+    add_group_tool_option('videolist', elgg_echo('videolist:enablegroup'), true);
+    elgg_extend_view('groups/tool_latest', 'videolist/group_module');
 }
 
 
