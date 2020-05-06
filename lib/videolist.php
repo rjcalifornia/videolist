@@ -61,6 +61,76 @@ function get_shared_videolist($container_guid = NULL) {
 }
 
 
+function get_featured_videolist($container_guid = NULL) {
+
+	$return = array();
+
+	$return = array(
+		'filter' => '',
+	);
+	$options = array(
+            /*'metadata_name_value_pairs' => array
+                (
+                    //'toId' => $_SESSION['user']->guid,
+                    //'readYet' => 0,
+                    'marked' => 'recommended'
+                ),*/
+		'type' => 'object',
+		'subtype' => 'videolist',
+		'full_view' => false,
+            'metadata_names' =>array('marked'),
+           'metadata_values' =>array('recommended'),
+                //'type' => 'recommended',
+                'limit' => 8,
+            //'list_type' => 'gallery',
+		'no_results' => elgg_echo('videolist:none'),
+		'preload_owners' => true,
+		'distinct' => false,
+                'pagination' => false,
+            'offset'=>0,
+	);
+
+	$current_user = elgg_get_logged_in_user_entity();
+
+	if ($container_guid) {
+		// access check for closed groups
+		elgg_group_gatekeeper();
+
+		$container = get_entity($container_guid);
+		if ($container instanceof ElggGroup) {
+		$options['container_guid'] = $container_guid;
+		} else {
+			$options['owner_guid'] = $container_guid;
+		}
+		$return['title'] = elgg_echo('videolist:title:user_videos', array($container->name));
+
+		$crumbs_title = $container->name;
+		elgg_push_breadcrumb($crumbs_title);
+
+		if ($current_user && ($container_guid == $current_user->guid)) {
+			$return['filter_context'] = 'mine';
+		} else if (elgg_instanceof($container, 'group')) {
+			$return['filter'] = false;
+		} else {
+			// do not show button or select a tab when viewing someone else's posts
+			$return['filter_context'] = 'none';
+		}
+	} else {
+		$options['preload_containers'] = true;
+		$return['filter_context'] = 'all';
+		$return['title'] = elgg_echo('videolist:videos:recommended');
+		elgg_pop_breadcrumb();
+		elgg_push_breadcrumb(elgg_echo('videolist:all'));
+	}
+
+	//elgg_register_title_button('videolist', 'add', 'object', 'videolist');
+        
+	$return['content'] = elgg_list_entities_from_metadata($options);
+
+	return $return;
+}
+
+
 
 
 /**

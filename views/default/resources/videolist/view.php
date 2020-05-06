@@ -35,7 +35,7 @@ if ($blog->comments_on != 'Off' && $blog->status == 'published') {
 	$params['content'] .= elgg_view_comments($blog);
 }
 
-$params['sidebar'] = elgg_view('videolist/sidebar', array('page' => $page_type));
+$params['sidebar'] = elgg_view('extras/sidebar', array('page' => $page_type, 'video_guid'=> $blog->guid));
 
 $body = elgg_view_layout('content', $params);
 

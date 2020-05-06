@@ -31,6 +31,7 @@ function videolist_init() {
     elgg_register_plugin_hook_handler('entity:icon:url', 'object', 'videolist_set_icon_url');
     elgg_register_action("videolist/save", __DIR__ . "/actions/videolist/save.php");
     elgg_register_action("videolist/delete", __DIR__ . "/actions/videolist/delete.php");
+    elgg_register_action("videolist/recommended", __DIR__ . "/actions/videolist/recommended.php");
     
     // Add group option
     add_group_tool_option('videolist', elgg_echo('videolist:enablegroup'), true);
