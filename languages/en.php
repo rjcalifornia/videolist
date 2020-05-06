@@ -10,7 +10,7 @@ return array(
         'videolist:title:user_videos' => 'Videos shared by me',
         'videolist:title:friends' => 'Videos shared by my friends',
         'videolist:none' => 'No videos',
-        'videolist:title' => 'Enter a YouTube URL:',
+        'videolist:title' => 'Enter a YouTube or Vimeo URL:',
         'videolist:original:title' =>'Edit video title:',
         'videolist:edit' => 'Edit video details',
         'videolist:group' => 'Group videolist',
