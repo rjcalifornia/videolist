@@ -60,6 +60,15 @@ $save_button = elgg_view('input/submit', array(
         'hidden' => 'true',
 	'name' => 'save',
 ));
+
+$video_type = elgg_view('input/text', array(
+	'name' => 'video_type',
+	'id' => 'videolist_type',
+        'hidden' => true,
+        //'onkeyup' => 'validateYouTubeUrl();',
+    
+	'value' => '',
+));
 }
 
 $action_buttons = $save_button . $delete_link;
@@ -106,7 +115,7 @@ echo <<<___HTML
 	$access_input
 </div>
 
-
+$video_type
 $guid_input
 $container_guid_input
 

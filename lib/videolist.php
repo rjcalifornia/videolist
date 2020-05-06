@@ -88,6 +88,11 @@ function get_featured_videolist($container_guid = NULL) {
 		'distinct' => false,
                 'pagination' => false,
             'offset'=>0,
+           // 'order_by' => 'time_updated',
+          /*  'order_by_metadata' => array(
+//'name' => 'quantity',
+'direction' => 'DESC',
+'as' => 'integer'),*/
 	);
 
 	$current_user = elgg_get_logged_in_user_entity();

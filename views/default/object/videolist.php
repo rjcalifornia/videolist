@@ -59,7 +59,28 @@ if ($full) {
     
    
 
+//echo $videolist->videolist_type;
+    
+    if($videolist->videolist_type == '2')
+    {
+        
+        //echo $videolist->video_url;
+        $content = file_get_contents("https://vimeo.com/api/oembed.json?url=" . $videolist->video_url . '&width=620&height=480');
+        ///parse_str($content, $ytarr);
+        $jsondec = json_decode($content);
+$body = 
+<<<___HTML
+        <center>
+        $jsondec->html;
+        </center>
 
+
+___HTML;
+
+  
+    }
+    else
+    {
 $body = <<<___HTML
 <center>
 <video
@@ -73,6 +94,7 @@ $body = <<<___HTML
   </video>
   </center>
 ___HTML;
+    }
 
 
 	$params = array(

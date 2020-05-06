@@ -10,6 +10,7 @@ $comments = get_input('comments_on');
 $guid = get_input('guid');
 $edited_title = get_input('title');
 $container = (int)get_input('container_guid');
+$videolist_type= get_input('video_type');
 
 //$videoDetails = array();
 
@@ -29,6 +30,8 @@ if ($guid) {
 }
 else{
 //$url = "http://www.youtube.com/watch?v=C4kxS1ksqtw&feature=relate";
+    if($videolist_type == "1")
+    {
 parse_str( parse_url( $url, PHP_URL_QUERY ), $videoDetails );
 $videoId = $videoDetails['v']; 
 
@@ -37,6 +40,15 @@ $content = file_get_contents("http://youtube.com/get_video_info?video_id=" . $vi
 parse_str($content, $ytarr);
 $jsondec = json_decode($ytarr['player_response'],true); 
 $title = $jsondec['videoDetails']['title'];
+    }
+    
+    if($videolist_type == "2")
+    {
+        $content = file_get_contents("https://vimeo.com/api/oembed.json?url=" . $url . '&width=480&height=360');
+        ///parse_str($content, $ytarr);
+        $jsondec = json_decode($content);
+        $title = $jsondec->title;
+    }
 //$title = $ytarr['title'];
 
 $videolist = new ElggVideolist();
@@ -46,6 +58,7 @@ $videolist->access_id = $access;
 $videolist->comments_on = $comments;
 $videolist->subtype = 'videolist';
 $videolist->container_guid = $container;
+$videolist->videolist_type = $videolist_type;
 $videolist->owner_guid = elgg_get_logged_in_user_guid();
 $videolist->status = 'published';
 
