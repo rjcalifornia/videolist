@@ -133,5 +133,6 @@ else {
 	);
 	$params = $params + $vars;
 	echo elgg_view('object/elements/summary', $params);
+        echo elgg_view('extras/featured', array('videolist'=> $videolist));
 
 }
