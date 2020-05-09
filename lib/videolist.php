@@ -15,7 +15,7 @@ function get_shared_videolist($container_guid = NULL) {
 		'subtype' => 'videolist',
 		'full_view' => false,
             'list_type' => 'gallery',
-		'no_results' => elgg_echo('elggpress:none'),
+		'no_results' => elgg_echo('videolist:none'),
 		'preload_owners' => true,
 		'distinct' => false,
 	);

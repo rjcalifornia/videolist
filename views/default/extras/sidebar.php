@@ -8,7 +8,7 @@
 $page = elgg_extract('page', $vars);
 $video_guid = elgg_extract('video_guid', $vars);
 //echo 'test';
-$guid = 36;
+$guid = elgg_get_logged_in_user_entity()->guid;
 $share_url = "videolist/add/$guid";
 	$share_link = elgg_view('output/url', array(
 		'href' => $share_url,

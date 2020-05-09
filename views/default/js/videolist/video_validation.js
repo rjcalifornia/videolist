@@ -40,7 +40,5 @@ $( "#videolist_url" ).keyup(function() {
 });
 
 
-   return function validateYouTubeUrl()
-{console.log('readsme');
-};
+   
 });
