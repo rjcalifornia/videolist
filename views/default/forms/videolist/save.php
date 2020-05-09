@@ -4,7 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+//elgg_require_js("videolist/video_validation");
 $video = get_entity($vars['guid']);
 $vars['entity'] = $video;
 
@@ -50,7 +50,7 @@ $video_label = elgg_echo('videolist:title');
 $video_input = elgg_view('input/text', array(
 	'name' => 'url',
 	'id' => 'videolist_url',
-        'onkeyup' => 'validateYouTubeUrl();',
+        //'onkeyup' => 'validateYouTubeUrl();',
 	'value' => $vars['url']
 ));
 
