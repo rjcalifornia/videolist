@@ -2,6 +2,7 @@
 
 $page_type = elgg_extract('page_type', $vars);
 
+
 $params = get_shared_videolist();
 
 $params['sidebar'] = elgg_view('videolist/sidebar', ['page' => $page_type]);

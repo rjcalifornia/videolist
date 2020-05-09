@@ -50,6 +50,7 @@ else{
         ///parse_str($content, $ytarr);
         $jsondec = json_decode($content);
         $title = $jsondec->title;
+        $thumb_url = $jsondec->thumbnail_url;
     }
 
 

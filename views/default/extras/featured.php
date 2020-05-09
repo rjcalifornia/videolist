@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 $videolist = get_entity($vars['videolist']->getGUID());
-elgg_extend_view('page/elements/head', 'extras/scripts');
+
 
     if($videolist->videolist_type == '2')
     {
@@ -27,20 +27,16 @@ ___HTML;
     }
     else
     {
+        $xml = simplexml_load_file("http://www.youtube.com/oembed?url=". $videolist->video_url ."&format=xml");
+//        $body = $xml->html;
+   
 $body = <<<___HTML
 <center>
-<video
-    id="vid1"
-    class="video-js vjs-default-skin"
-    controls
-    
-    width="480" height="320"
-    data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "$videolist->video_url"}] }'
-  >
-  </video>
+$xml->html;
   </center>
   </br>
 ___HTML;
+
     }
     
     echo $body;
