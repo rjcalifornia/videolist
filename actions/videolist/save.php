@@ -32,14 +32,16 @@ else{
 //$url = "http://www.youtube.com/watch?v=C4kxS1ksqtw&feature=relate";
     if($videolist_type == "1")
     {
-parse_str( parse_url( $url, PHP_URL_QUERY ), $videoDetails );
-$videoId = $videoDetails['v']; 
+        
+//parse_str( parse_url( $url, PHP_URL_QUERY ), $videoDetails );
 
+   // $videoId = $videoDetails['v']; 
+        
+    //Using oembed protocol instead to get the video title. Storing the thumbnail URL for future purposes
+    $xml = simplexml_load_file("http://www.youtube.com/oembed?url=". $url ."&format=xml");
+    $title = $xml->title;
+    $thumb_url = $xml->thumbnail_url;
 
-$content = file_get_contents("http://youtube.com/get_video_info?video_id=" . $videoId);
-parse_str($content, $ytarr);
-$jsondec = json_decode($ytarr['player_response'],true); 
-$title = $jsondec['videoDetails']['title'];
     }
     
     if($videolist_type == "2")
@@ -49,7 +51,7 @@ $title = $jsondec['videoDetails']['title'];
         $jsondec = json_decode($content);
         $title = $jsondec->title;
     }
-//$title = $ytarr['title'];
+
 
 $videolist = new ElggVideolist();
 $videolist->title = $title;
@@ -61,12 +63,18 @@ $videolist->container_guid = $container;
 $videolist->videolist_type = $videolist_type;
 $videolist->owner_guid = elgg_get_logged_in_user_guid();
 $videolist->status = 'published';
-
+$videolist->thumbnail_url = $thumb_url;
 $videolist_guid = $videolist->save();
 
 // if the my_blog was saved, we want to display the new post
 // otherwise, we want to register an error and forward back to the form
 if ($videolist_guid) {
+       elgg_create_river_item(array(
+				'view' => 'river/object/videolist/create',
+				'action_type' => 'create',
+				'subject_guid' => $videolist->owner_guid,
+				'object_guid' => $videolist->getGUID(),
+			));
    system_message("Your video was shared.");
    forward($videolist->getURL());
 } else {

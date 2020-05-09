@@ -118,6 +118,7 @@ ___HTML;
 	echo '<div class="file-gallery-item">';
 	echo "<h3>" . $videolist->title . "</h3>";
 	echo elgg_view_entity_icon($videolist, 'medium');
+        //echo '<img src="'. $videolist->thumbnail_url .'" alt="logo"  width="100"/>';
 	echo "<p class='subtitle'>$owner_link $date</p>";
 	echo '</div>';
 }
@@ -133,6 +134,6 @@ else {
 	);
 	$params = $params + $vars;
 	echo elgg_view('object/elements/summary', $params);
-        echo elgg_view('extras/featured', array('videolist'=> $videolist));
+        echo elgg_view('extras/featured', array('videolist'=>$videolist));
 
 }

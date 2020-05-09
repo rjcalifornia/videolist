@@ -18,6 +18,7 @@ return array(
         'videolist:videos:recommended' => 'Recommended',
         'videolist:recommended:add' => 'Mark as recommended',
         'videolist:video:recommended' => 'Recommended video',
+        'river:create:object:videolist' => '%s posted a video: %s',
         'videolist:options' => 'Videolist options',
 	
 );
