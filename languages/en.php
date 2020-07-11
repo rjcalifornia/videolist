@@ -4,6 +4,7 @@ return array(
 
 	// Editing
 	'videolist:add' => 'Share a video',
+	'videolist:brand' => 'Videolist',
         
         'videolist:videos' => 'Videos',
         'videolist:all:videos' => 'All shared videos',

@@ -14,5 +14,10 @@ $excerpt = strip_tags($excerpt);
 
 echo elgg_view('river/elements/layout', array(
 	'item' => $vars['item'],
-	'message' => $excerpt,
+	//'message' => $excerpt,
 ));
+
+
+echo elgg_view('resources/videolist/river_card',
+        array('object'=> $object)
+        );
