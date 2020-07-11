@@ -8,7 +8,7 @@ echo elgg_view('videolist/css');
 
 $object = $vars['object'];
 $siteName = elgg_echo('videolist:brand');
-$siteUrl = elgg_get_site_url();
+$siteUrl = elgg_get_site_url() . 'videolist/all';
 $videoTitle = $object->title;
 $videoUrl = $object->getUrl();
 
